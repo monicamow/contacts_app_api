@@ -1,10 +1,9 @@
-Sinatra
+Contacts App API
 =============
 
-Brought to you by Lighthouse Labs
+Brought to you by Lighthouse Labs 
+(and Monica Mow)
 
 ## Getting Started
 
-1. `bundle install`
-2. `shotgun -p 3000 -o 0.0.0.0`
-3. Visit `http://localhost:3000/` in your browser
+Instructions to follow...
