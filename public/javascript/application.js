@@ -14,6 +14,10 @@ var app = function() {
     });
   });
 
+  $('#clear-contacts').on('click', function () {
+      $('#contact-list').html('');
+  });
+
 }
 
 $(document).ready(function() {
