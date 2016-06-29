@@ -10,6 +10,8 @@ require 'sinatra/contrib/all' # Requires cookies, among other things
 
 require 'json'
 
+require 'rack-flash'
+
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 APP_NAME = APP_ROOT.basename.to_s
 
@@ -17,6 +19,8 @@ APP_NAME = APP_ROOT.basename.to_s
 configure do
   set :root, APP_ROOT.to_path
   set :server, :puma
+
+  use Rack::Flash
 
   enable :sessions
   set :session_secret, ENV['SESSION_KEY'] || 'lighthouselabssecret'
