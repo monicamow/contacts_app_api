@@ -14,7 +14,7 @@
 <p><button id="clear-contacts">Clear</button></p>
 
 <p>
-  <form id="new-contact">
+  <form>
     <label>First Name:</label>
     <br>
     <input id="first-name-input" type="text" name="firstname"><br>
@@ -35,4 +35,16 @@
   </form>
 </p>
 
-<div id="creation-notice"></div>
+<div id="show-new-contact"></div>
+
+<p>
+  <form>
+    <label>Show contact (by id):</label>
+    <br>
+    <input id="contact-id-input" type="text" name="id"><br>
+
+    <button id="show-contact" type="submit">Show contact</button>
+  </form>
+</p>
+
+<div id="show-contact-data"></div>

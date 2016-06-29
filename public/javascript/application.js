@@ -20,10 +20,10 @@ var app = function() {
       $('#contact-list').html('');
   });
 
-  // Attach a submit handler to the form
+  // submit form for new contact on click
   $( "#create-new-contact" ).on('click', function(e) { 
     e.preventDefault();
-    // Get some values from elements on the page:
+    // Get values from elements on the page:
     var first = $("#first-name-input").val();
     var last = $("#last-name-input").val();
     var email = $("#email-input").val();
