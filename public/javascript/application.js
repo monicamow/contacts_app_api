@@ -1,5 +1,5 @@
 var app = function() {
-  $( "#is-this-working" ).text( "This is working. YAYYY." ).show();
+  console.log("entered the app");
 
   // load all contacts when button clicked
   $(function () {
@@ -29,10 +29,12 @@ var app = function() {
     var email = $("#email-input").val();
     var phone = $("#phone-number-input").val();
     var contact = {firstname: first, lastname: last, email: email, phone_number: phone};
+
+    console.log("contact variable created");
    
     // Send the data using post
     $.post( "/contacts", contact, function( data ) {
-      console.log(data);
+      console.log("inside JQ post()");
       contact = JSON.parse(data)
         $('body').append(contact.firstname).find('#creation-notice').show();
       }
