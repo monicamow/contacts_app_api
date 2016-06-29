@@ -15,8 +15,7 @@ post '/contacts' do
     phone_number: params[:phone_number]
     )
   if @contact.save
-    flash[:notice] = "Success!"
-  else
-    flash[:notice] = "Failed."
+    puts @contact.to_json
+    @contact.to_json
   end
 end
