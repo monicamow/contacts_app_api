@@ -1,27 +1,30 @@
 var app = function() {
   console.log("entered the app");
 
-  // LIST ALL CONTACTS
-  $(function () {
-    var button = $('#list-contacts');
-    button.one('click', function () {
-      $.ajax({
-        url: '/contacts',
-        method: 'GET',
-        success: function (morePostsHtml) {
-          button.replaceWith(morePostsHtml);
-        }
+  // LOAD/LIST ALL CONTACTS
+    $('#list-contacts').on('click', function () {
+
+      $.getJSON("/contacts", function(contacts) {
+        $("tbody").empty();
+        contacts.forEach(displayContact);
+        $('#contact-list-table').show();
       });
     });
-  });
+
+  function displayContact(contact) {
+    var tableRow = $("<tr>").appendTo("tbody")
+    $("<td>").text(contact.firstname).appendTo(tableRow);
+    $("<td>").text(contact.lastname).appendTo(tableRow);
+  };
 
   // clear all contacts when button clicked
   $('#clear-contacts').on('click', function () {
-      $('#contact-list').html('');
+      $('#contact-list-table').hide();
   });
 
   // NEW CONTACT
   $( "#create-new-contact" ).on('click', function(e) { 
+    $("#new-contact-form").show();
     e.preventDefault();
     // Get values from input fields on the page:
     var first = $("#first-name-input").val();
@@ -60,5 +63,8 @@ var app = function() {
 
 $(document).ready(function() {
   console.log("The DOM is now loaded.");
+  $('#contact-list-table').hide();
+  $("#new-contact-form").hide();
+  $("#show-contact-form").hide();
   app();
 });
