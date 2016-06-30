@@ -19,7 +19,8 @@ var app = function() {
     $("<td>").text(contact.email).appendTo(tableRow);
     $("<td>").text(contact.phone_number).appendTo(tableRow);
     // $("<button>").text("Show Details").appendTo(tableRow);
-    $("<button>").text("Delete User").data('id', contact.id).addClass("delete-button").appendTo(tableRow);
+    $("<button>").text("Edit").data('id', contact.id).addClass("edit-button").appendTo(tableRow);
+    $("<button>").text("Delete").data('id', contact.id).addClass("delete-button").appendTo(tableRow);
   };
 
   // clear all contacts when button clicked
