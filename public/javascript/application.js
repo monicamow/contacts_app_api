@@ -13,8 +13,13 @@ var app = function() {
 
   function displayContact(contact) {
     var tableRow = $("<tr>").appendTo("tbody")
+    $("<td>").text(contact.id).appendTo(tableRow);
     $("<td>").text(contact.firstname).appendTo(tableRow);
     $("<td>").text(contact.lastname).appendTo(tableRow);
+    $("<td>").text(contact.email).appendTo(tableRow);
+    $("<td>").text(contact.phone_number).appendTo(tableRow);
+    // $("<button>").text("Show Details").appendTo(tableRow);
+    $("<button>").text("Delete User").appendTo(tableRow);
   };
 
   // clear all contacts when button clicked
@@ -24,7 +29,10 @@ var app = function() {
 
   // NEW CONTACT
   $( "#create-new-contact" ).on('click', function(e) { 
-    $("#new-contact-form").show();
+    $("#new-contact-form").show();   
+  });
+
+  $("#new-contact-form").on('submit', function(e) {
     e.preventDefault();
     // Get values from input fields on the page:
     var first = $("#first-name-input").val();
@@ -40,15 +48,14 @@ var app = function() {
       console.log("inside JQ post()");
       contact = JSON.parse(data) // might not need this
       $('body').append(contact.firstname).find('#show-new-contact').show();
-      });
-   
+    });
   });
 
   // SHOW CONTACT
   $( "#show-contact").on('click', function(e) {
     e.preventDefault();
     // Get value from input field
-    var contactID = $("#contact-id-input").val();
+    var contactID = $("#show-id-input").val();
 
     console.log("contact id saved to variable");
 
@@ -58,6 +65,26 @@ var app = function() {
       $('body').append(data.firstname).find("#show-contact-data").show();
     });
   }); 
+
+  // DELETE CONTACT
+  $( "#delete-contact").on('click', function(e) {
+    e.preventDefault();
+    // Get value from input field
+    var contactID = $("#delete-id-input").val();
+
+    console.log("contact id saved to variable");
+
+    // Send the data using ajax DELETE
+    $.getJSON("/contacts/" + contactID + "/delete", function( results ) {
+        console.log("id sent to /contacts/:id");
+        if (results.result) {
+          alert(results.success_message);
+        } else {
+          alert(results.fail_message);
+        }
+    });
+  });   
+
 
 }
 

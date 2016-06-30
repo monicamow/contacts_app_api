@@ -32,13 +32,21 @@ end
 # update/edit
 
 # destroy/delete
-delete '/contacts/:id' do |id|
-  @contact = Contact.find(id)
-  @contact.delete
-  if @contact.delete
-    puts "deleted"
-  else
-    puts "not deleted"
+get '/contacts/:id/delete' do |id|
+  results = {result: false}
+  begin
+    @contact = Contact.find(id)
+    @contact_name = @contact.firstname
+    @contact.destroy
+    if @contact.destroy
+      results[:result] = true
+      results[:success_message] = "The user, #{@contact.firstname}, was deleted."
+    else 
+      results[:fail_message] = "Could not delete user. \"WTF?\""
+    end
+  rescue
+    results[:fail_message] = "Whaaat? There's no user..."
   end
+  results.to_json
 end
 

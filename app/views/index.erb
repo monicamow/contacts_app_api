@@ -8,6 +8,7 @@
 <table id="contact-list-table">
   <thead>
     <tr>
+      <th>ID</th>
       <th>First Name</th>
       <th>Last Name</th>
       <th>Email</th>
@@ -39,6 +40,7 @@
     <label>Phone Number:</label>
     <br>
     <input id="phone-number-input" type="text" name="phone_number"><br>
+  <button id="submit-new-contact">Submit</button>
 </form>
 
 <div id="show-new-contact"></div>
@@ -46,9 +48,17 @@
 <form id="show-contact-form">
     <label>Show contact (by id):</label>
     <br>
-    <input id="contact-id-input" type="text" name="id"><br>
+    <input id="show-id-input" type="text" name="id"><br>
 
     <button id="show-contact" type="submit">Show contact</button>
 </form>
 
 <div id="show-contact-data"></div>
+
+<form id="delete-contact-form">
+    <label>Delete contact (by id):</label>
+    <br>
+    <input id="delete-id-input" type="text" name="id"><br>
+
+    <button id="delete-contact" type="submit">Delete contact</button>
+</form>
