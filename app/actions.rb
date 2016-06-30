@@ -32,3 +32,13 @@ end
 # update/edit
 
 # destroy/delete
+delete '/contacts/:id' do |id|
+  @contact = Contact.find(id)
+  @contact.delete
+  if @contact.delete
+    puts "deleted"
+  else
+    puts "not deleted"
+  end
+end
+
