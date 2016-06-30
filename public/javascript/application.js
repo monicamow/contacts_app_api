@@ -19,7 +19,7 @@ var app = function() {
     $("<td>").text(contact.email).appendTo(tableRow);
     $("<td>").text(contact.phone_number).appendTo(tableRow);
     // $("<button>").text("Show Details").appendTo(tableRow);
-    $("<button>").text("Delete User").appendTo(tableRow);
+    $("<button>").text("Delete User").data('id', contact.id).addClass("delete-button").appendTo(tableRow);
   };
 
   // clear all contacts when button clicked
@@ -66,25 +66,20 @@ var app = function() {
     });
   }); 
 
-  // DELETE CONTACT
-  $( "#delete-contact").on('click', function(e) {
-    e.preventDefault();
-    // Get value from input field
-    var contactID = $("#delete-id-input").val();
-
-    console.log("contact id saved to variable");
-
-    // Send the data using ajax DELETE
-    $.getJSON("/contacts/" + contactID + "/delete", function( results ) {
-        console.log("id sent to /contacts/:id");
-        if (results.result) {
-          alert(results.success_message);
-        } else {
-          alert(results.fail_message);
-        }
+  // DELETE CONTACT WITH DATA BUTTON
+  $("#contact-list-table").on('click', 'button.delete-button', function() {
+    var btn = $(this);
+    console.log(btn);
+    var id = btn.data('id');
+    $.getJSON('/contacts/'+ id +'/delete', function(results) {
+      if (results.result) {
+        alert(results.success_message);
+        btn.parents('tr').remove();
+      } else {
+        alert(results.fail_message);
+      }
     });
-  });   
-
+  });
 
 }
 
