@@ -30,6 +30,18 @@ get '/contacts/:id' do |id|
 end
 
 # update/edit
+post '/contacts/:id/edit' do |id|
+  @contact = Contact.find(id)
+  @contact.firstname = params[:firstname]
+  @contact.lastname = params[:lastname]
+  @contact.email = params[:email]
+  @contact.phone_number = params[:phone_number]
+  @contact.save
+  if @contact.save
+    puts "inside save"
+    @contact.to_json
+  end  
+end
 
 # destroy/delete
 get '/contacts/:id/delete' do |id|

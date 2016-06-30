@@ -30,16 +30,18 @@ var app = function() {
 
   // NEW CONTACT
   $( "#create-new-contact" ).on('click', function(e) { 
-    $("#new-contact-form").show();   
+    $('body > :not(#new-contact-form)').hide(); //hide all nodes directly under the body
+    $("#new-contact-form").show();
+    $('#new-contact-form').appendTo('body'); 
   });
 
   $("#new-contact-form").on('submit', function(e) {
     e.preventDefault();
     // Get values from input fields on the page:
-    var first = $("#first-name-input").val();
-    var last = $("#last-name-input").val();
-    var email = $("#email-input").val();
-    var phone = $("#phone-number-input").val();
+    var first = $("#first-name-new").val();
+    var last = $("#last-name-new").val();
+    var email = $("#email-new").val();
+    var phone = $("#phone-number-new").val();
     var contact = {firstname: first, lastname: last, email: email, phone_number: phone};
 
     console.log("contact variable created");
@@ -48,7 +50,7 @@ var app = function() {
     $.post( "/contacts", contact, function( data ) {
       console.log("inside JQ post()");
       contact = JSON.parse(data) // might not need this
-      $('body').append(contact.firstname).find('#show-new-contact').show();
+      $('body').append(contact.firstname).find('#show-new').show();
     });
   });
 
@@ -66,6 +68,35 @@ var app = function() {
       $('body').append(data.firstname).find("#show-contact-data").show();
     });
   }); 
+
+  // EDIT CONTACT
+  $("#contact-list-table").on('click', 'button.edit-button', function() {
+    var btn = $(this);
+    console.log(btn);
+    var id = btn.data('id');       
+    $('body > :not(#edit-contact-form)').hide(); //hide all nodes directly under the body
+    $("#edit-contact-form").show();
+    $('#edit-contact-form').appendTo('body');
+
+    $("#edit-contact-form").on('submit', function(e) {
+      e.preventDefault();
+      // Get values from input fields on the page:
+      var first = $("#first-name-edit").val();
+      var last = $("#last-name-edit").val();
+      var email = $("#email-edit").val();
+      var phone = $("#phone-number-edit").val();
+      var contact = {firstname: first, lastname: last, email: email, phone_number: phone};
+
+      console.log("contact variable saved"); 
+
+      // Send the data using POST
+      $.post( "/contacts/" + id + "/edit", contact, function( data ) {
+        console.log("inside JQ post()");
+        contact = JSON.parse(data) // might not need this
+        $('body').append(contact.firstname).find('#show-edit').show();
+      });
+    });
+  });
 
   // DELETE CONTACT WITH DATA BUTTON
   $("#contact-list-table").on('click', 'button.delete-button', function() {
@@ -88,6 +119,7 @@ $(document).ready(function() {
   console.log("The DOM is now loaded.");
   $('#contact-list-table').hide();
   $("#new-contact-form").hide();
+  $("#edit-contact-form").hide();
   $("#show-contact-form").hide();
   app();
 });
