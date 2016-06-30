@@ -1,20 +1,29 @@
 <h1>Home Page</h1>
 
-<div id="is-this-working"></div>
+<p>
+    <button id="list-contacts">List all contacts</button>
+    <button id="clear-contacts">Clear</button>
+</p>
 
-<form>
-<input type="text">
-<input type="submit">
-</form><br>
-
-<div id="contact-list">
-  <p><button id="list-contacts">List all contacts</button></p>
-</div>
-
-<p><button id="clear-contacts">Clear</button></p>
+<table id="contact-list-table">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
 
 <p>
-  <form>
+    <button id="create-new-contact" type="submit">Create new contact</button>
+</p>
+
+<form id="new-contact-form">
     <label>First Name:</label>
     <br>
     <input id="first-name-input" type="text" name="firstname"><br>
@@ -30,21 +39,16 @@
     <label>Phone Number:</label>
     <br>
     <input id="phone-number-input" type="text" name="phone_number"><br>
-
-    <button id="create-new-contact" type="submit">Create new contact</button>
-  </form>
-</p>
+</form>
 
 <div id="show-new-contact"></div>
 
-<p>
-  <form>
+<form id="show-contact-form">
     <label>Show contact (by id):</label>
     <br>
     <input id="contact-id-input" type="text" name="id"><br>
 
     <button id="show-contact" type="submit">Show contact</button>
-  </form>
-</p>
+</form>
 
 <div id="show-contact-data"></div>
