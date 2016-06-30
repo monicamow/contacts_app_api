@@ -2,14 +2,14 @@ var app = function() {
   console.log("entered the app");
 
   // LOAD/LIST ALL CONTACTS
-    $('#list-contacts').on('click', function () {
+  $('#list-contacts').on('click', function () {
 
-      $.getJSON("/contacts", function(contacts) {
-        $("tbody").empty();
-        contacts.forEach(displayContact);
-        $('#contact-list-table').show();
-      });
+    $.getJSON("/contacts", function(contacts) {
+      $("tbody").empty();
+      contacts.forEach(displayContact);
+      $('#contact-list-table').show();
     });
+  });
 
   function displayContact(contact) {
     var tableRow = $("<tr>").appendTo("tbody")
@@ -113,7 +113,22 @@ var app = function() {
     });
   });
 
-}
+  // Back button for new and edit forms
+
+  $(".back").on('click', function(e) {
+    e.preventDefault();
+    back();
+  });
+
+  function back() {
+    $('body >').show(); //hide all nodes directly under the body  
+    $('#contact-list-table').hide();
+    $("#new-contact-form").hide();
+    $("#edit-contact-form").hide();
+    $("#show-contact-form").hide();
+  };
+
+};
 
 $(document).ready(function() {
   console.log("The DOM is now loaded.");
