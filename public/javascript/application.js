@@ -19,8 +19,11 @@ var app = function() {
     $("<td>").text(contact.email).appendTo(tableRow);
     $("<td>").text(contact.phone_number).appendTo(tableRow);
     // $("<button>").text("Show Details").appendTo(tableRow);
-    $("<button>").text("Edit").data('id', contact.id).addClass("edit-button").appendTo(tableRow);
-    $("<button>").text("Delete").data('id', contact.id).addClass("delete-button").appendTo(tableRow);
+    var editCell = $("<td>").appendTo(tableRow)
+    var deleteCell = $("<td>").appendTo(tableRow)
+    $("<button>").text("Edit").addClass("edit-button").appendTo(editCell);
+    $("<button>").text("Delete").addClass("delete-button").appendTo(deleteCell);
+    $("button").addClass("waves-effect waves-light btn").data('id', contact.id)
   };
 
   // clear all contacts when button clicked
@@ -30,9 +33,9 @@ var app = function() {
 
   // NEW CONTACT
   $( "#create-new-contact" ).on('click', function(e) { 
-    $('body > :not(#new-contact-form)').hide(); //hide all nodes directly under the body
+    $('#main-selection').hide();  
     $("#new-contact-form").show();
-    $('#new-contact-form').appendTo('body'); 
+    $('#new-contact-form').appendTo('centered-content'); 
   });
 
   $("#new-contact-form").on('submit', function(e) {
@@ -73,10 +76,11 @@ var app = function() {
   $("#contact-list-table").on('click', 'button.edit-button', function() {
     var btn = $(this);
     console.log(btn);
-    var id = btn.data('id');       
-    $('body > :not(#edit-contact-form)').hide(); //hide all nodes directly under the body
+    var id = btn.data('id');  
+    $('table').hide();   
+    $('#main-selection').hide();  
     $("#edit-contact-form").show();
-    $('#edit-contact-form').appendTo('body');
+    $('#edit-contact-form').appendTo('centered-content'); 
 
     $("#edit-contact-form").on('submit', function(e) {
       e.preventDefault();
@@ -121,17 +125,15 @@ var app = function() {
   });
 
   function back() {
-    $('body >').show(); //hide all nodes directly under the body  
-    $('#contact-list-table').hide();
-    $("#new-contact-form").hide();
-    $("#edit-contact-form").hide();
-    $("#show-contact-form").hide();
+    $("form").hide();
+    $('#main-selection').show(); 
   };
 
 };
 
 $(document).ready(function() {
   console.log("The DOM is now loaded.");
+  $("button").addClass("waves-effect waves-light btn");
   $('#contact-list-table').hide();
   $("#new-contact-form").hide();
   $("#edit-contact-form").hide();
