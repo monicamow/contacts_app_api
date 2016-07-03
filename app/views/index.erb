@@ -1,81 +1,79 @@
-<h1>Home Page</h1>
+<div class="centered-content">
+  <div id="main-selection">
+    <h1>Contacts</h1>
+    <button id="list-contacts">List All</button>
+    <button id="clear-contacts">Clear All</button>
+    <button id="create-new-contact" type="submit">New</button>
+  </div>
 
-<p>
-    <button id="list-contacts">List all contacts</button>
-    <button id="clear-contacts">Clear</button>
-</p>
+  <table id="contact-list-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th colspan="5"></th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
 
-<table id="contact-list-table">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th colspan="5"></th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
+  <form id="new-contact-form">
+      <h2>New Contact</h2>
+      <label>First Name:</label>
+      <br>
+      <input id="first-name-new" type="text" name="firstname"><br>
 
-<p>
-    <button id="create-new-contact" type="submit">Create new contact</button>
-</p>
+      <label>Last Name:</label>
+      <br>
+      <input id="last-name-new" type="text" name="lastname"><br>
 
-<form id="new-contact-form">
-    <h2>New Contact</h2>
-    <label>First Name:</label>
-    <br>
-    <input id="first-name-new" type="text" name="firstname"><br>
+      <label>Email:</label>
+      <br>
+      <input id="email-new" type="text" name="email"><br>
 
-    <label>Last Name:</label>
-    <br>
-    <input id="last-name-new" type="text" name="lastname"><br>
+      <label>Phone Number:</label>
+      <br>
+      <input id="phone-number-new" type="text" name="phone_number"><br>
+    <button id="submit-new" type="submit">Submit</button>
+    <button class="back">Back</button>
+  </form>
 
-    <label>Email:</label>
-    <br>
-    <input id="email-new" type="text" name="email"><br>
+  <div id="show-new"></div>
 
-    <label>Phone Number:</label>
-    <br>
-    <input id="phone-number-new" type="text" name="phone_number"><br>
-  <button id="submit-new" type="submit">Submit</button>
-  <button class="back">Back</button>
-</form>
+  <form id="edit-contact-form">
+      <h2>Edit Contact</h2>
+      <label>First Name:</label>
+      <br>
+      <input id="first-name-edit" type="text" name="firstname"><br>
 
-<div id="show-new"></div>
+      <label>Last Name:</label>
+      <br>
+      <input id="last-name-edit" type="text" name="lastname"><br>
 
-<form id="edit-contact-form">
-    <h2>Edit Contact</h2>
-    <label>First Name:</label>
-    <br>
-    <input id="first-name-edit" type="text" name="firstname"><br>
+      <label>Email:</label>
+      <br>
+      <input id="email-edit" type="text" name="email"><br>
 
-    <label>Last Name:</label>
-    <br>
-    <input id="last-name-edit" type="text" name="lastname"><br>
+      <label>Phone Number:</label>
+      <br>
+      <input id="phone-number-edit" type="text" name="phone_number"><br>
+    <button id="submit-edit" type="submit">Submit</button>
+    <button class="back">Back</button>
+  </form>
 
-    <label>Email:</label>
-    <br>
-    <input id="email-edit" type="text" name="email"><br>
+  <div id="show-edit"></div>
 
-    <label>Phone Number:</label>
-    <br>
-    <input id="phone-number-edit" type="text" name="phone_number"><br>
-  <button id="submit-edit" type="submit">Submit</button>
-  <button class="back">Back</button>
-</form>
+  <form id="show-contact-form">
+      <label>Show contact (by id):</label>
+      <br>
+      <input id="show-id-input" type="text" name="id"><br>
 
-<div id="show-edit"></div>
+      <button id="show-contact" type="submit">Show</button>
+  </form>
 
-<form id="show-contact-form">
-    <label>Show contact (by id):</label>
-    <br>
-    <input id="show-id-input" type="text" name="id"><br>
-
-    <button id="show-contact" type="submit">Show contact</button>
-</form>
-
-<div id="show-contact-data"></div>
+  <div id="show-contact-data"></div>
+</div>
